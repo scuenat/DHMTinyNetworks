@@ -24,6 +24,7 @@ As an example:
 The training script is copying the generated model into the folder "workspace" (which is automatically created if it does not exist).
 The name of the model is constructed as follows: {model_type}.h5. (e.g.: tvit.h5).
 A test file (CSV) is also generated based on the corresponding settings (TEST_SPLIT). This file contains a list of images not seen during training. This set must be used to evaluate the performance of the trained model (e.g: test_images_128_tvgg.csv).
+The number associated to each image is actually the class ID (not a distance), this number has to be converted during the test using the array you can find in "data_generator.py" (mapping).
 
 # General information
 
