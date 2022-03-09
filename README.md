@@ -1,5 +1,7 @@
 # DHM Tiny Networks
 This repository contains the training scripts to train a tiny model as proposed in this paper, ARXIV LINK.
+You can download a dataset of experimental holograms at this address:
+https://zenodo.org/record/6337535.
 
 Three neural networks are proposed:
 
