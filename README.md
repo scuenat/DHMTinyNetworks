@@ -9,13 +9,19 @@ Three neural networks are proposed:
 
 # How to run a training script
 The training script takes several parameters in consideration.
-- dataset: path to the dataset like the one proposed at this address (experimental holograms).
-- batch_size: number of holograms considered at once
-- num_roi: number of ROIs randomly extracted of the size specified in the settings file. 
-- model_type: either "tswint", "tvit" or "tvgg". 
+- **dataset**: path to the dataset like the one proposed at this address (experimental holograms).
+- **batch_size**: number of holograms considered at once
+- **num_roi**: number of ROIs randomly extracted of the size specified in the settings file. 
+- **model_type**: either "tswint", "tvit" or "tvgg". 
+
+**Please note**: that the batch size is multiplied by the "num_roi". This gives the number inputs a neural network will process at once. 
 
 As an example:
 `python3 train.py --dataset="c:/temp/test_dataset" --batch_size=2 --num_roi=4 --model_type="tswint"`
+
+#Outputs 
+The training script is copying the generated model into the folder "workspace" (which is automatically created if it does not exist).
+The name of the model is constructed as follows: {model_type}.h5. (e.g.: tvit.h5).
 
 # General information
 
