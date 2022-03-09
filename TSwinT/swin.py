@@ -3,7 +3,7 @@ import tensorflow as tf
 from tensorflow.keras.layers import Dense, Dropout, Conv2D, LayerNormalization, GlobalAveragePooling1D
 
 CFGS = {
-        'swin_supertiny_128': dict(input_size=(128,128), window_size=4,  embed_dim=32, depths=[2, 2, 4, 2], num_heads=[2, 4, 8, 8]),
+        'tswint': dict(input_size=(128,128), window_size=4,  embed_dim=32, depths=[2, 2, 4, 2], num_heads=[2, 4, 8, 8]),
         'swin_tiny_128': dict(input_size=(128,128), window_size=4,  embed_dim=64, depths=[2, 2, 4, 2], num_heads=[2, 4, 8, 8]),
         'swin_tiny_224': dict(input_size=(224, 224), window_size=7, embed_dim=96, depths=[2, 2, 6, 2], num_heads=[3, 6, 12, 24]),
         'swin_small_224': dict(input_size=(224, 224), window_size=7, embed_dim=96, depths=[2, 2, 18, 2], num_heads=[3, 6, 12, 24]),

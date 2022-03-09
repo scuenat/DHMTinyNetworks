@@ -2,7 +2,7 @@ import typing
 import tensorflow as tf
 import typing_extensions as tx
 
-import layers_vit
+import TViT.tvit_layers as tvit_layers
 
 ConfigDict = tx.TypedDict(
     "ConfigDict",
@@ -96,10 +96,10 @@ def build_model(
         trainable=True
     )(x)
     y = tf.keras.layers.Reshape((y.shape[1] * y.shape[2], hidden_size))(y)
-    y = layers_vit.ClassToken(name="class_token")(y)
-    y = layers_vit.AddPositionEmbs(name="Transformer/posembed_input")(y)
+    y = tvit_layers.ClassToken(name="class_token")(y)
+    y = tvit_layers.AddPositionEmbs(name="Transformer/posembed_input")(y)
     for n in range(num_layers):
-        y, _ = layers_vit.TransformerBlock(
+        y, _ = tvit_layers.TransformerBlock(
             num_heads=num_heads,
             mlp_dim=mlp_dim,
             dropout=dropout,

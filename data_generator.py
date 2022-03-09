@@ -1,8 +1,10 @@
 import numpy as np
-import settings
 import cv2
 
+import settings
+
 from numpy import random
+
 
 distances = [-50.000000, -49.000000, -48.001440, -47.004320, -46.008640, -45.014400, -44.021600, -43.030240, -42.040320,
              -41.051840, -40.064800, -39.079200, -38.095040, -37.112320, -36.131040, -35.151200, -34.172800, -33.195840,
@@ -19,13 +21,13 @@ distances = [-50.000000, -49.000000, -48.001440, -47.004320, -46.008640, -45.014
 window = settings.IMAGE_SIZE[0]
 
 
-def data_gen(data_info: np.ndarray) -> (np.ndarray, np.array):
+def data_gen(data_info: list, batch_size: int, num_roi: int, pre_processing) -> (np.ndarray, np.array):
     cnt = 0
     while True:
-        x = np.zeros((settings.N_BATCH * settings.BATCH_SIZE,) + settings.IMAGE_SIZE, dtype=np.float)
-        y = np.zeros((settings.N_BATCH * settings.BATCH_SIZE, 1), dtype=np.float)
+        x = np.zeros((batch_size * num_roi,) + settings.IMAGE_SIZE, dtype=np.float)
+        y = np.zeros((batch_size * num_roi, 1), dtype=np.float)
 
-        for n in range(0, settings.N_BATCH):
+        for n in range(0, batch_size):
             if cnt >= len(data_info):
                 break
 
@@ -34,12 +36,12 @@ def data_gen(data_info: np.ndarray) -> (np.ndarray, np.array):
 
             cnt += 1
 
-            for k in range(0, settings.BATCH_SIZE):
+            for k in range(0, num_roi):
                 x_r = random.randint(1024 - window)
                 y_r = random.randint(1024 - window)
                 img_n = img[y_r:y_r + window, x_r:x_r + window]
-                x[n * settings.BATCH_SIZE + k] = pre_process_image(img_n)
-                y[n * settings.BATCH_SIZE + k] = distances[distance_z]
+                x[n * batch_size + k] = pre_processing(img_n)
+                y[n * batch_size + k] = distances[distance_z]
 
         if cnt >= len(data_info):
             cnt = 0
