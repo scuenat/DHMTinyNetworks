@@ -7,7 +7,7 @@ Three neural networks are proposed:
 - TViT
 - Or TSwinT
 
-# How to run a training script
+# How to run a training for one of the tiny model
 The training script takes several parameters in consideration.
 - **dataset**: path to the dataset like the one proposed at this address (experimental holograms).
 - **batch_size**: number of holograms considered at once
