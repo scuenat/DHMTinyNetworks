@@ -19,7 +19,8 @@ The training script takes several parameters in consideration.
 As an example:
 `python3 train.py --dataset="c:/temp/test_dataset" --batch_size=2 --num_roi=4 --model_type="tswint"`
 
-#Outputs 
+
+# Outputs 
 The training script is copying the generated model into the folder "workspace" (which is automatically created if it does not exist).
 The name of the model is constructed as follows: {model_type}.h5. (e.g.: tvit.h5).
 
