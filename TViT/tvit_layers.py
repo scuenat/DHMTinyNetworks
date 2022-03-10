@@ -143,9 +143,7 @@ class TransformerBlock(tf.keras.layers.Layer):
                 else tf.keras.layers.Lambda(
                     lambda x: tfa.activations.gelu(x, approximate=False)
                 ),
-                #tf.keras.layers.Dropout(self.dropout),
                 tf.keras.layers.Dense(input_shape[-1], name=f"{self.name}/Dense_1"),
-                #tf.keras.layers.Dropout(self.dropout),
             ],
             name="MlpBlock_3",
         )
@@ -155,12 +153,10 @@ class TransformerBlock(tf.keras.layers.Layer):
         self.layernorm2 = tf.keras.layers.LayerNormalization(
             epsilon=1e-6, name="LayerNorm_2"
         )
-        self.dropout_layer = tf.keras.layers.Dropout(self.dropout)
 
     def call(self, inputs, training):
         x = self.layernorm1(inputs)
         x, weights = self.att(x)
-        #x = self.dropout_layer(x, training=training)
         x = x + inputs
         y = self.layernorm2(x)
         y = self.mlpblock(y)
